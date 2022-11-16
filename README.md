@@ -23,6 +23,7 @@ Orders will be categorized into 3 phases: Ordered, Prepared, Done. The final res
 🚀 <a id="features"> **Features** </a>
 
 - [x] Backend logic with routes
+- [x] Frontend configuration
 - [ ] Web Dashboard
 - [ ] Mobile order app
 
