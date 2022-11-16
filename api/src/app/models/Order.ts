@@ -21,10 +21,10 @@ export const Order = model(
       required: true,
       type: [
         {
-          category: {
+          product: {
             type: Schema.Types.ObjectId,
             required: true,
-            ref: "Category",
+            ref: "Product",
           },
           quantity: {
             type: Number,

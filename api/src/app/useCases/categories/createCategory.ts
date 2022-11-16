@@ -10,7 +10,7 @@ export async function createCategory(req: Request, res: Response) {
 
     res.status(201).json(category);
   } catch (error) {
-    res.status(500).json({
+    res.sendStatus(500).json({
       error: "Internal Server error",
     });
   }
