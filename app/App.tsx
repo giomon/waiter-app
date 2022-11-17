@@ -1,5 +1,6 @@
 /* eslint-disable quotes */
 import { useFonts } from "expo-font";
+import { StatusBar } from "expo-status-bar";
 import { Main } from "./src/Main";
 
 export default function App() {
@@ -13,5 +14,10 @@ export default function App() {
     return null;
   }
 
-  return <Main />;
+  return (
+    <>
+      <StatusBar style="dark" />
+      <Main />
+    </>
+  );
 }
