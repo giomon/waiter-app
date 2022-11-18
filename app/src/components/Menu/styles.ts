@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 import styled from "styled-components/native";
 
-export const Product = styled.TouchableOpacity`
+export const ProductContainer = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
 `;

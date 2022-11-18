@@ -18,6 +18,7 @@ export function TableModal({ visible, onClose, onSave }: TableModalProps) {
   function handleSave() {
     onSave(table);
     onClose();
+    setTable("");
   }
 
   return (
@@ -34,6 +35,7 @@ export function TableModal({ visible, onClose, onSave }: TableModalProps) {
 
           <Form>
             <Input
+              value={table}
               placeholder="Número da mesa"
               placeholderTextColor="#666"
               keyboardType="number-pad"
