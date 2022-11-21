@@ -44,7 +44,7 @@ The main tecnologies used in this projects were React, React Native, Typescript,
 📂 <a id="launch"> **How to start this project** </a>
 
        # Clone this repo
-    ❯ git clone https://github.com/diegobaena89/financial-sistem-reactjs.git
+    ❯ git clone https://github.com/diegobaena89/waiter-app.git
 
     # Enter on its directory
     ❯ cd waiter-app
