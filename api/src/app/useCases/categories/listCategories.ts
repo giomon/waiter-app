@@ -1,14 +1,24 @@
 /* eslint-disable quotes */
 import { Request, Response } from "express";
-import { Category } from "../../models/Category";
+import * as admin from 'firebase-admin';
 
 export async function listCategories(req: Request, res: Response) {
   try {
-    const categories = await Category.find();
+    const db = admin.firestore();
+    const categoriesCollection = db.collection('categories');
+    const snapshot = await categoriesCollection.get();
+
+    const categories: any[] = [];
+    snapshot.forEach((doc) => {
+      categories.push({
+        _id: doc.id,
+        ...doc.data(),
+      });
+    });
 
     res.json(categories);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.sendStatus(500);
   }
 }

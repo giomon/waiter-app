@@ -1,6 +1,6 @@
 /* eslint-disable quotes */
 import { Request, Response } from "express";
-import { Order } from "../../models/Order";
+import * as admin from 'firebase-admin';
 
 export async function changeOrderStatus(req: Request, res: Response) {
   try {
@@ -13,7 +13,11 @@ export async function changeOrderStatus(req: Request, res: Response) {
       });
     }
 
-    await Order.findByIdAndUpdate(orderId, { status });
+    const db = admin.firestore();
+    const ordersCollection = db.collection('orders');
+    const orderRef = ordersCollection.doc(orderId);
+
+    await orderRef.update({ status });
 
     res.sendStatus(204);
   } catch (error) {

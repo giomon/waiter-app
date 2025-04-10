@@ -1,17 +1,24 @@
 /* eslint-disable quotes */
 import { Request, Response } from "express";
+import * as admin from 'firebase-admin';
 
-import { Order } from "./../../models/Order";
-
-export async function listOrders(req: Request, res: Response) {
+export async function listOrders(_req: Request, res: Response) {
   try {
-    const orders = await Order.find()
-      .sort({ createdAt: 1 })
-      .populate("products.product");
+    const db = admin.firestore();
+    const ordersCollection = db.collection('orders');
+    const snapshot = await ordersCollection.get();
+
+    const orders: any[] = [];
+    snapshot.forEach((doc) => {
+      orders.push({
+        _id: doc.id,
+        ...doc.data(),
+      });
+    });
 
     res.json(orders);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.sendStatus(500);
   }
 }

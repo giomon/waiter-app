@@ -2,11 +2,22 @@
 import { Request, Response } from "express";
 import { Category } from "../../models/Category";
 
-export async function createCategory(req: Request, res: Response) {
+import * as admin from 'firebase-admin';
+
+export async function  createCategory(req: Request, res: Response) {
   try {
     const { icon, name } = req.body;
 
-    const category = await Category.create({ icon, name });
+    const db = admin.firestore();
+    const categoriesCollection = db.collection('categories');
+
+    const categoryData = { icon, name };
+    const docRef = await categoriesCollection.add(categoryData);
+    const snapshot = await docRef.get();
+    const category = {
+      _id: docRef.id,
+      ...snapshot.data(),
+    };
 
     res.status(201).json(category);
   } catch (error) {
